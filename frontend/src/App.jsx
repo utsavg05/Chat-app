@@ -1,9 +1,27 @@
+import { Route, Routes } from "react-router-dom"
+import Navbar from "./components/Navbar"
+import HomePage from "./pages/HomePage"
+import SignUpPage from "./pages/SignUpPage"
+import LoginPage from "./pages/LoginPage"
+import SettingsPage from "./pages/SettingsPage"
+import ProfilePage from "./pages/ProfilePage"
+
 function App() {
 
   return (
-    <>
-    <h1 className='text-4xl bg-red-500'>Hello chat</h1>
-    </>
+    <div>
+
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+
+    </div>
   )
 }
 
