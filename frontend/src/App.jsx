@@ -16,6 +16,11 @@ function App() {
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
   const {theme} = useThemeStore()
 
+  // Apply theme to <body> on theme change
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme)
+  }, [theme])
+
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
