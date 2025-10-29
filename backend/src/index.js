@@ -63,7 +63,7 @@ app.use(cookieParser());
 // ✅ Handle both local + deployed origins
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://zync-kappa.vercel.app/', // replace with your actual frontend URL after deploy
+  'https://zync-kappa.vercel.app', // replace with your actual frontend URL after deploy
 ];
 
 app.use(
