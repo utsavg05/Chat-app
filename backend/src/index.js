@@ -50,20 +50,19 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDB } from './lib/db.js';
 import { app, server } from './lib/socket.js';
-import path from 'path';
-
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
 
 dotenv.config();
 
+// middleware setup
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Handle both local + deployed origins
+// ✅ Update CORS to allow both localhost and Vercel frontend
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://zync-kappa.vercel.app', // replace with your actual frontend URL after deploy
+  'https://zync-kappa.vercel.app', // your deployed frontend URL
 ];
 
 app.use(
@@ -73,23 +72,17 @@ app.use(
   })
 );
 
-const PORT = process.env.PORT || 5001;
-const __dirname = path.resolve();
-
+// routes
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
-// ✅ Serve frontend build on production
-if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, '../frontend/dist');
-  app.use(express.static(frontendPath));
+// ✅ remove the static serve section (frontend is deployed separately)
+// ❌ no need for express.static or index.html routes
 
-  app.get('/{*any}', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-  });
-}
+// start server
+const PORT = process.env.PORT || 5001;
 
-connectDB();
 server.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
+  connectDB();
 });
