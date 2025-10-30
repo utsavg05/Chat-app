@@ -62,7 +62,7 @@ app.use(cookieParser());
 // ✅ Update CORS to allow both localhost and Vercel frontend
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://zync-kappa.vercel.app', // your deployed frontend URL
+  'https://zync-three.vercel.app', // your deployed frontend URL
 ];
 
 app.use(
