@@ -13,6 +13,6 @@ export const axiosInstance = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
       ? "http://localhost:5001/api"
-      : "https://zync-backend-ruddy.vercel.app/api",
+      : "https://zync-backend-o0sk.onrender.com/api",
   withCredentials: true,
 });
