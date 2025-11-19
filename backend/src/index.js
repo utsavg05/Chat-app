@@ -62,7 +62,7 @@ app.use(cookieParser());
 // ✅ Update CORS to allow both localhost and Vercel frontend
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://zync-three.vercel.app', // your deployed frontend URL
+  'https://zync-three.vercel.app', // deployed frontend URL
 ];
 
 app.use(
@@ -76,8 +76,6 @@ app.use(
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
-// ✅ remove the static serve section (frontend is deployed separately)
-// ❌ no need for express.static or index.html routes
 
 // start server
 const PORT = process.env.PORT || 5001;
